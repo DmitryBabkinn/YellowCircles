@@ -11,22 +11,24 @@ class MyWidget(QMainWindow):
     def __init__(self):
         super().__init__()
         self.press = False
+        self.circles = []
         uic.loadUi('UI.ui', self)
         self.pushButton.clicked.connect(self.clickButton)
 
     def paintEvent(self, event):
-        # Создаем объект QPainter для рисования
         qp = QPainter()
-        # Начинаем процесс рисования
         qp.begin(self)
         self.draw_circles(qp)
-        # Завершаем рисование
         qp.end()
 
     def draw_circles(self, qp):
         if self.press:
-            qp.setBrush(QColor(255, 255, 0))
+            for i in self.circles:
+                qp.setBrush(QColor(255, 255, 0))
+                qp.drawEllipse(i[0], i[1], i[2], i[2])
             x, y, d = randint(0, 450), randint(0, 360), randint(0, 366)
+            self.circles.append(tuple([x, y, d]))
+            qp.setBrush(QColor(255, 255, 0))
             qp.drawEllipse(x, y, d, d)
 
     def clickButton(self):
