@@ -24,11 +24,14 @@ class MyWidget(QMainWindow):
     def draw_circles(self, qp):
         if self.press:
             for i in self.circles:
-                qp.setBrush(QColor(255, 255, 0))
+                qp.setBrush(QColor(i[3], i[4], i[5]))
                 qp.drawEllipse(i[0], i[1], i[2], i[2])
             x, y, d = randint(0, 450), randint(0, 360), randint(0, 366)
-            self.circles.append(tuple([x, y, d]))
-            qp.setBrush(QColor(255, 255, 0))
+            r = randint(0, 255)
+            g = randint(0, 255)
+            b = randint(0, 255)
+            self.circles.append(tuple([x, y, d, r, g, b]))
+            qp.setBrush(QColor(r, g, b))
             qp.drawEllipse(x, y, d, d)
 
     def clickButton(self):
