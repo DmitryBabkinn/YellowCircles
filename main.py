@@ -10,6 +10,11 @@ class MyWidget(QMainWindow):
     def __init__(self):
         super().__init__()
         uic.loadUi('UI.ui', self)
+        self.pushButton.clicked.connect(self.clickButton)
+
+    def clickButton(self):
+        self.sender().hide()
+
 
 
 if __name__ == '__main__':
