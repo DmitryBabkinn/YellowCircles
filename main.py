@@ -3,15 +3,14 @@ from random import randint
 from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtGui import QPainter, QColor
-from PyQt5.QtWidgets import QMainWindow
+from UI import MainWindow
 
 
-class MyWidget(QMainWindow):
+class MyWidget(MainWindow):
     def __init__(self):
         super().__init__()
         self.press = False
         self.circles = []
-        uic.loadUi('UI.ui', self)
         self.pushButton.clicked.connect(self.clickButton)
 
     def paintEvent(self, event):
